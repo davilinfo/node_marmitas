@@ -9,7 +9,7 @@ express (boa opção para servidor http e escalabilidade)
 express-session (permitir escalar o site)
 body-parser (parser de querystring e forms elements em requisições ao servidor)
 redis (performance e utilização de dados em memória)
-passport (autenticação disponível em Facebook e local)
+passport, passport-facebook, passport-local (autenticação disponível em Facebook e local)
 npmlog (log customizado)
 
 FRONTEND
@@ -39,4 +39,8 @@ API (principais métodos)
 /api/atualizar/:idmarmita atualizar uma marmita
 
 ENTIDADES
-Poderia ter criado entidades para utilizar padrão MVC, mas estava com tempo apertado nessa última semana
+Poderia ter criado entidades para utilizar padrão MVC, mas estava com tempo apertado nessa última semana. Se houver tempo eu criarei entidade marmita.
+
+TESTE
+Foi utilizado nodeunit para criação de testes de unidade. Para executar basta estar no diretório raiz e digitar nodeunit ./test/test-db-list.js
+O nodeunit deve estar instalado
