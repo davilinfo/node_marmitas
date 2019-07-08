@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Comida saudável</title>
+        <meta charset="iso-8859-2" /> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>        
+        <script src="https://unpkg.com/ag-grid-enterprise/dist/ag-grid-enterprise.min.noStyle.js" ></script>
+        <script src="index.js"></script>
+
+        <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+        <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> 
+    </head>
+    <body>
+        <div class="jumbotron">
+            <h1><span class="fa fa-lock"></span> Autenticação</h1>
+            <div class="row">
+                <label>Login:</label>
+                <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
+            </div>
+            <div class="row">
+                <form method="POST" action="/auth/local">
+                    <label>Login:</label>
+                    <input type='text' id="username" name="username" />
+                    <label>Password:</label>
+                    <input type='password' id="password" name="password" />
+                    <input type='submit' class="btn btn-primary" id="locallogin" value="Login"/>
+                </form>
+            </div>
+            <div id="usuario">
+                <label></label>
+            </div>
+        </div>
+
+        <div>
+            <div id="criar_marmita">
+                <input type="button" name="btnCriarMarmita" value="Criar marmita"></input>
+            </div>
+            <section style="width:43%;">
+                <div id="listagem" class="ag-theme-balham" style="height: 200px;">
+                </div>
+            </section>
+        </div>
+
+        <script>        
+            $.support.cors = true;
+            $("#criar_marmita > input[type=button]")[0].addEventListener('click', criar_autenticado);
+            listar();
+        </script>
+    </body>
+</html>

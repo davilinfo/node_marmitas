@@ -1,0 +1,36 @@
+{
+  "name": "marmitas",
+  "version": "1.0.0",
+  "description": "Administrando marmitas Beleaf",
+  "main": "index.html",
+  "scripts": {
+    "test": "node --harmony $(which nodeunit) test/test-db-list.js"
+  },
+  "keywords": [
+    "marmitas",
+    "beleaf",
+    "node",
+    "express",
+    "promises",
+    "mssql"
+  ],
+  "author": "Davi",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.19.0",
+    "connect-redis": "^3.4.1",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "mssql": "^5.1.0",
+    "nodeunit": "^0.11.3",
+    "npmlog": "^4.1.2",
+    "passport": "^0.4.0",
+    "passport-facebook": "^3.0.0",
+    "passport-google": "^0.3.0",
+    "passport-local": "^1.0.0",
+    "redis": "^2.8.0",
+    "tedious": "^6.2.0"
+  }
+}
