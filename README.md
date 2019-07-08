@@ -1,7 +1,18 @@
 # node_marmitas
 Projeto desenvolvido em nodejs
 
+ACESSO
+URL: http://18.231.112.208:8080/
 LOGIN (usuário: teste / senha: 123456): funcionamento remoto e local
+BANCO DE DADOS: usuário: usrmarmita / senha:Beleaf2019
+Arquivo start.sh (deve ser atualizado para executável)
+
+REQUISITOS
+Site disponibiliza lista de marmitas, ordenação de marmitas, paginação de marmitas sem solicitar autenticação
+Site disponibiliza consulta de detalhe de marmita sem solicitar autenticação
+Site disponibiliza criação de marmita, atualização de marmita, exclusão de marmita apenas com autenticação de usuário
+Não será listada marmita que não esteja com quantidade disponível
+Preço de desconto de marmita é disponibilizado a partir de cálculo
 
 BACKEND
 nodejs
@@ -46,7 +57,7 @@ Foi utilizado nodeunit para criação de testes de unidade. Para executar basta es
 O nodeunit deve estar instalado
 
 SERVIDOR HTTP
-Online o serviço está sendo executado utilizando pm2 (assim se houver falhar de servidor, este reiniciará automaticamente)
+Online: o serviço está sendo executado utilizando pm2 (assim se houver falhar de servidor, este reiniciará automaticamente)
 
 SCRIPT BANCO DE DADOS
 Incluído em github script do banco de dados e script tabela marmita
