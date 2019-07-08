@@ -4,7 +4,8 @@
   "description": "Administrando marmitas Beleaf",
   "main": "index.html",
   "scripts": {
-    "test": "node --harmony $(which nodeunit) test/test-db-list.js"
+    "start": "node --harmony beleafMarmitaWS.js",
+    "test": "nodeunit test/test-db-list.js"
   },
   "keywords": [
     "marmitas",

@@ -44,3 +44,9 @@ Poderia ter criado entidades para utilizar padrão MVC, mas estava com tempo aper
 TESTE
 Foi utilizado nodeunit para criação de testes de unidade. Para executar basta estar no diretório raiz e digitar nodeunit ./test/test-db-list.js
 O nodeunit deve estar instalado
+
+SERVIDOR HTTP
+Online o serviço está sendo executado utilizando pm2 (assim se houver falhar de servidor, este reiniciará automaticamente)
+
+SCRIPT BANCO DE DADOS
+Incluído em github script do banco de dados e script tabela marmita
