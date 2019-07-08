@@ -246,7 +246,7 @@ const
         
         mssql.connect(config).then(pool =>{
             return pool.request()
-                .query("select * from marmita");
+                .query("select * from marmita where quantidade > 0");
         }).then(result =>
             {
                 res.status(200).json(result.recordsets);

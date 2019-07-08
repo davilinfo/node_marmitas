@@ -15,7 +15,7 @@
     <body>
         <div class="jumbotron">
             <h1><span class="fa fa-lock"></span> Autenticação</h1>
-            <div class="row">
+            <div class="row" id="facebook">
                 <label>Login:</label>
                 <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
             </div>
@@ -46,6 +46,12 @@
         <script>        
             $.support.cors = true;
             $("#criar_marmita > input[type=button]")[0].addEventListener('click', criar_autenticado);
+            var regExp = new RegExp('localhost', 'i');
+            if (regExp.test(document.baseURI)){
+                $("#facebook").show();
+            }else{
+                $("#facebook").hide();
+            }
             listar();
         </script>
     </body>
