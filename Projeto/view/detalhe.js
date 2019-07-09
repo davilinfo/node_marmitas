@@ -116,7 +116,8 @@ function detalhe(){
     })
     .done(function (result) {
         if (result !== null){
-            var marmita = result[0][0];            
+            
+            var marmita = result;
             $('#resultado').text("Dados recebidos");
             $("#codigo").val(marmita.Codigo);
             $('#nomedetalhe').val(marmita.Nome); 

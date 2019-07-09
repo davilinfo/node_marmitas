@@ -13,6 +13,7 @@ const
     GoogleStrategy = require('passport-google').Strategy,
     LocalStrategy = require('passport-local').Strategy,
     log = require('npmlog'),
+    marmita = require('./m/marmita'),
     app = express();
     
     var hostpc = 'localhost';
@@ -144,19 +145,24 @@ const
         log.info('API', '/api/criar');
 
         mssql.connect(config).then(pool =>{
+
+            var newMarmita = Object.create(marmita.marmita);
+            newMarmita.fromView(req.body, req.params.idmarmita);
+
             return pool.request()
-            .input('nome', mssql.VarChar, req.body.nome)
-            .input('descricao', mssql.VarChar, req.body.descricao)
-            .input('preco', mssql.Money, req.body.preco)
-            .input('precoDesconto', mssql.Money, req.body.preco * (100 - req.body.porcentagem) / 100)
-            .input('ingredientes', mssql.VarChar, req.body.ingredientes)
-            .input('quantidade', mssql.Float, req.body.quantidade)
-            .input('url', mssql.VarChar, req.body.url)
-            .input('porcentagemDesconto', mssql.Float, req.body.porcentagem === undefined ? 0 : req.body.porcentagem)
+            .input('nome', mssql.VarChar, newMarmita.Nome)
+            .input('descricao', mssql.VarChar, newMarmita.Descricao)
+            .input('preco', mssql.Money, newMarmita.Preco)
+            .input('precoDesconto', mssql.Money, newMarmita.PrecoDesconto)
+            .input('ingredientes', mssql.VarChar, newMarmita.Ingredientes)
+            .input('quantidade', mssql.Float, newMarmita.Quantidade)
+            .input('url', mssql.VarChar, newMarmita.Url)
+            .input('porcentagemDesconto', mssql.Float, newMarmita.PorcentagemDesconto)
                 .query('insert into marmita(nome, descricao, preco, ingredientes, quantidade, url, porcentagemDesconto, precoDesconto) '
                 .concat('values(@nome, @descricao, @preco, @ingredientes, @quantidade, @url, @porcentagemDesconto, @precoDesconto) '));
         }).then(result =>
             {
+                console.log(result);
                 res.status(200).json({resultado: true});
                 mssql.close();
                 log.info('API', '/api/criar: registro incluído');
@@ -174,16 +180,20 @@ const
         log.info('API', '/api/atualizar');
 
         mssql.connect(config).then(pool =>{
+
+            var newMarmita = Object.create(marmita.marmita);
+            newMarmita.fromView(req.body, req.params.idmarmita);
+
             return pool.request()
-                .input('codigo', mssql.Int, req.params.idmarmita)
-                .input('nome', mssql.VarChar, req.body.nome)
-                .input('descricao', mssql.VarChar, req.body.descricao)
-                .input('preco', mssql.Money, req.body.preco)
-                .input('precoDesconto', mssql.Money, req.body.preco * (100 - req.body.porcentagem) / 100)
-                .input('ingredientes', mssql.VarChar, req.body.ingredientes)
-                .input('quantidade', mssql.Float, req.body.quantidade)
-                .input('url', mssql.VarChar, req.body.url)
-                .input('porcentagemDesconto', mssql.Float, req.body.porcentagem)
+                .input('codigo', mssql.Int, newMarmita.Codigo)
+                .input('nome', mssql.VarChar, newMarmita.Nome)
+                .input('descricao', mssql.VarChar, newMarmita.Descricao)
+                .input('preco', mssql.Money, newMarmita.Preco)
+                .input('precoDesconto', mssql.Money, newMarmita.PrecoDesconto)
+                .input('ingredientes', mssql.VarChar, newMarmita.Ingredientes)
+                .input('quantidade', mssql.Float, newMarmita.Quantidade)
+                .input('url', mssql.VarChar, newMarmita.Url)
+                .input('porcentagemDesconto', mssql.Float, newMarmita.PorcentagemDesconto)
                 .query('update marmita set '
                 .concat('nome = @nome, descricao = @descricao, preco = @preco, ingredientes = @ingredientes, ')
                 .concat('quantidade = @quantidade, url = @url, porcentagemDesconto = @porcentagemDesconto, ')
@@ -207,7 +217,7 @@ const
     //autenticado
     app.delete('/api/excluir/:idmarmita', authed, function(req, res){
         res.setHeader('Access-Control-Allow-Origin', '*');
-        log.info('API', 'request recebido: excluir');        
+        log.info('API', 'request recebido: excluir');
         mssql.connect(config).then(pool =>{
             return pool.request()
                 .input('codigo', mssql.Int, req.params.idmarmita)
@@ -239,7 +249,7 @@ const
         }
     });
 
-    //nao requer autenticação
+    //não requer autenticação
     app.get('/api/listar', function(req, res){
         res.setHeader('Access-Control-Allow-Origin', '*');
         log.info('API','api/listar');
@@ -248,8 +258,18 @@ const
             return pool.request()
                 .query("select * from marmita where quantidade > 0");
         }).then(result =>
-            {
-                res.status(200).json(result.recordsets);
+            {                
+                var lista = [];
+                if (result.recordsets.length > 0){
+                    result.recordsets[0].forEach(element => {
+                        var newMarmita = Object.create(marmita.marmita);
+                        
+                        newMarmita.toModel(element);
+                        lista.push(newMarmita);
+                    });
+                }
+                
+                res.status(200).json(lista);
                 mssql.close();
             }).catch(err =>{
                 console.log('Erro:'.concat(err.message));
@@ -258,7 +278,7 @@ const
             }) ;
     });
 
-    //nao requer autenticação
+    //não requer autenticação
     app.get('/api/detalhe/:idmarmita', function(req, res){
         res.setHeader('Access-Control-Allow-Origin', '*');
         log.info('API','api/detalhe');
@@ -270,8 +290,16 @@ const
                 .query('select * from marmita where codigo = @input_parameter');
         }).then(result =>
             {
+
                 console.log(result.rowsAffected[0]);
-                res.status(200).json(result.recordsets);
+                var newMarmita = Object.create(marmita.marmita);
+                result.recordsets.forEach(element => {
+                    if (element.length > 0){
+                        newMarmita.toModel(element[0]);
+                    }
+                }); 
+                
+                res.status(200).json(newMarmita);
                 mssql.close();
             }).catch(err =>{
                 console.log('Erro:'.concat(err.message));

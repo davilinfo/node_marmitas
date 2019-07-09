@@ -42,7 +42,7 @@ function listar(){
             columnDefs: columnDefs,
             pagination: true,                        
             paginationPageSize:10,
-            rowData: result[0],
+            rowData: result,
             components: {
                 detalheLink: detalheLink
             } 
