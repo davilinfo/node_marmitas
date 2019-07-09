@@ -50,7 +50,7 @@ API (principais métodos)
 /api/atualizar/:idmarmita atualizar uma marmita
 
 ENTIDADES
-Poderia ter criado entidades para utilizar padrão MVC, mas estava com tempo apertado nessa última semana. Se houver tempo eu criarei entidade marmita.
+Criado entidade marmita e atualizado apis para utilizar entidade e métodos de model
 
 TESTE
 Foi utilizado nodeunit para criação de testes de unidade. Para executar basta estar no diretório raiz e digitar nodeunit ./test/test-db-list.js
