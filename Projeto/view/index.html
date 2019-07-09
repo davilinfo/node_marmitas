@@ -9,35 +9,39 @@
 
         <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
         <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> 
+        <link rel="stylesheet" href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     </head>
     <body>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">Comida saudável</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto"></ul>
+            </div>
+            <div class="my-2 my-lg-0" id="facebook"></div>
+                <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook">&ThinSpace;</span>acebook</a>
+            </div>
+        </nav>
         <div class="jumbotron">
-            <h1><span class="fa fa-lock"></span> Autenticação</h1>
-            <div class="row" id="facebook">
+            <p></p>
+            <h3> <span class="fa fa-lock"></span>Autenticação</h1>
+            <form class="form-inline my-2 my-lg-0" method="POST" action="/auth/local">                
                 <label>Login:</label>
-                <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
-            </div>
-            <div class="row">
-                <form method="POST" action="/auth/local">
-                    <label>Login:</label>
-                    <input type='text' id="username" name="username" />
-                    <label>Password:</label>
-                    <input type='password' id="password" name="password" />
-                    <input type='submit' class="btn btn-primary" id="locallogin" value="Login"/>
-                </form>
-            </div>
+                <input class="form-control my-sm-2" type='text' id="username" name="username" />
+                <label>Senha:</label>
+                <input class="form-control my-sm-2" type='password' id="password" name="password" />
+                <input type='submit' class="btn btn-primary" id="locallogin" value="Login"/>
+            </form>
             <div id="usuario">
                 <label></label>
             </div>
         </div>
 
         <div>
-            <div id="criar_marmita">
-                <input type="button" name="btnCriarMarmita" value="Criar marmita"></input>
-            </div>
             <section style="width:43%;">
+                    <div id="criar_marmita">
+                            <input class="btn btn-primary" type="button" name="btnCriarMarmita" value="Criar marmita"></input>
+                        </div>
                 <div id="listagem" class="ag-theme-balham" style="height: 200px;">
                 </div>
             </section>
