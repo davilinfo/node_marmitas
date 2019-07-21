@@ -2,47 +2,46 @@
 Projeto desenvolvido em nodejs
 
 ACESSO
-URL: http://18.231.112.208:8080/
-LOGIN (usu·rio: teste / senha: 123456): funcionamento remoto e local
-BANCO DE DADOS: usu·rio: usrmarmita / senha:Beleaf2019
-Arquivo start.sh (deve ser atualizado para execut·vel)
+LOGIN (usu√°rio: teste / senha: 123456): funcionamento remoto e local
+BANCO DE DADOS: usu√°rio: usrmarmita / senha:Beleaf2019
+Arquivo start.sh (deve ser atualizado para execut√°vel)
 
 REQUISITOS
-Site disponibiliza lista de marmitas, ordenaÁ„o de marmitas, paginaÁ„o de marmitas sem solicitar autenticaÁ„o
-Site disponibiliza consulta de detalhe de marmita sem solicitar autenticaÁ„o
-Site disponibiliza criaÁ„o de marmita, atualizaÁ„o de marmita, exclus„o de marmita apenas com autenticaÁ„o de usu·rio
-N„o ser· listada marmita que n„o esteja com quantidade disponÌvel
-PreÁo de desconto de marmita È disponibilizado a partir de c·lculo
+Site disponibiliza lista de marmitas, ordena√ß√£o de marmitas, pagina√ß√£o de marmitas sem solicitar autentica√ß√£o
+Site disponibiliza consulta de detalhe de marmita sem solicitar autentica√ß√£o
+Site disponibiliza cria√ß√£o de marmita, atualiza√ß√£o de marmita, exclus√£o de marmita apenas com autentica√ß√£o de usu√°rio
+N√£o ser√° listada marmita que n√£o esteja com quantidade dispon√≠vel
+Pre√ßo de desconto de marmita √© disponibilizado a partir de c√°lculo
 
 BACKEND
 nodejs
-express (boa opÁ„o para servidor http e escalabilidade)
+express (boa op√ß√£o para servidor http e escalabilidade)
 express-session (permitir escalar o site)
-body-parser (parser de querystring e forms elements em requisiÁıes ao servidor)
-redis (performance e utilizaÁ„o de dados em memÛria)
-passport, passport-facebook, passport-local (autenticaÁ„o disponÌvel em Facebook e local)
+body-parser (parser de querystring e forms elements em requisi√ß√µes ao servidor)
+redis (performance e utiliza√ß√£o de dados em mem√≥ria)
+passport, passport-facebook, passport-local (autentica√ß√£o dispon√≠vel em Facebook e local)
 npmlog (log customizado)
 
 FRONTEND
 HTML5 (forms modernos)
 javascript (essencial)
-jquery (biblioteca de manipulaÁ„o de elementos, poderia ter usado angular)
-jquery-validation (validaÁ„o de formul·rios)
-ag-grid (grid javascript permite ordenaÁ„o, paginaÁ„o e customizaÁ„o, vers„o enterprise)
-bootstrap(oferece css, fontes, Ìcones, design sofisticado e responsivo)
+jquery (biblioteca de manipula√ß√£o de elementos, poderia ter usado angular)
+jquery-validation (valida√ß√£o de formul√°rios)
+ag-grid (grid javascript permite ordena√ß√£o, pagina√ß√£o e customiza√ß√£o, vers√£o enterprise)
+bootstrap(oferece css, fontes, √≠cones, design sofisticado e responsivo)
 
 BANCO DE DADOS
-MS SQL SERVER 2017 com replicaÁ„o de dados e alta disponibilidade (toler‚ncia ‡ falhas È essencial em soluÁıes escal·veis)
-Ainda possibilidade in˙meras opÁıes para melhoria de consultas, Ìndices, seguranÁa, procedures, views, an·lise de performance, jobs
+MS SQL SERVER 2017 com replica√ß√£o de dados e alta disponibilidade (toler√¢ncia √† falhas √© essencial em solu√ß√µes escal√°veis)
+Ainda possibilidade in√∫meras op√ß√µes para melhoria de consultas, √≠ndices, seguran√ßa, procedures, views, an√°lise de performance, jobs
 
 HOSPEDAGEM SITE
 Site hospedado em Amazon AWS
 
-API (principais mÈtodos)
-/auth/local autenticaÁ„o local
-/auth/facebook autenticaÁ„o facebook
+API (principais m√©todos)
+/auth/local autentica√ß√£o local
+/auth/facebook autentica√ß√£o facebook
 /auth/logout logout
-/api/criarseautenticado verifica se usu·rio est· autenticado e permite acesso ‡ uma funcionalidade autenticada
+/api/criarseautenticado verifica se usu√°rio est√° autenticado e permite acesso √† uma funcionalidade autenticada
 /api/criar criar marmita
 /api/lista listar marmitas
 /api/detalhe/:idmarmita detalhe de uma marmita
@@ -50,14 +49,14 @@ API (principais mÈtodos)
 /api/atualizar/:idmarmita atualizar uma marmita
 
 ENTIDADES
-Criado entidade marmita e atualizado apis para utilizar entidade e mÈtodos de model
+Criado entidade marmita e atualizado apis para utilizar entidade e m√©todos de model
 
 TESTE
-Foi utilizado nodeunit para criaÁ„o de testes de unidade. Para executar basta estar no diretÛrio raiz e digitar nodeunit ./test/test-db-list.js
+Foi utilizado nodeunit para cria√ß√£o de testes de unidade. Para executar basta estar no diret√≥rio raiz e digitar nodeunit ./test/test-db-list.js
 O nodeunit deve estar instalado
 
 SERVIDOR HTTP
-Online: o serviÁo est· sendo executado utilizando pm2 (assim se houver falhar de servidor, este reiniciar· automaticamente)
+Online: o servi√ßo est√° sendo executado utilizando pm2 (assim se houver falhar de servidor, este reiniciar√° automaticamente)
 
 SCRIPT BANCO DE DADOS
-IncluÌdo em github script do banco de dados e script tabela marmita
+Inclu√≠do em github script do banco de dados e script tabela marmita
